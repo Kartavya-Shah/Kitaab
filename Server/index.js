@@ -1,18 +1,25 @@
- require("dotenv").config();
- const cors=require("cors");
- const express= require("express");
+require("dotenv").config();
+const cors = require("cors");
+const express = require("express");
+const connectDB = require("./connectDB")
 
- const app=express();
- const PORT= process.env.PORT || 8000;
+const app = express();
+const PORT = process.env.PORT || 8000;
 
-app.use(cors());  
-app.use(express.urlencoded({extended:true}));
-app.use(express.json()); 
+connectDB();
 
- app.get("/",(req,res)=>{
-    res.json("Hello mate!");
- }); 
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
- app.listen(PORT, ()=>{
-    console.log(`Server is running on PORT: ${PORT}`);
- });
+app.get("/", (req, res) => {
+   res.json("Hello mate!");
+});
+
+app.get("*", (req, res) => {
+   res.sendStatus("404");
+});
+
+app.listen(PORT, () => {
+   console.log(`Server is running on PORT: ${PORT}`);
+});
