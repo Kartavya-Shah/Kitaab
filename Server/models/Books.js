@@ -13,7 +13,7 @@ const BookSchema= new Schema({
         type :String,
     },
     thumbnail:{
-        t,ype :String,
+        type :String,
     },
     stars:{
         type :Number,
