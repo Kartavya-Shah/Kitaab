@@ -26,3 +26,5 @@ const BookSchema= new Schema({
         default: Date.now()
     },
 })
+
+module.exports=mongoose.model('Book',BookSchema);
