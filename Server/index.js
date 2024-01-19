@@ -42,10 +42,9 @@ try{
    res.json(data);
 }
 catch(error){
-   
+   res.status(500).json({error:"An error occurred while fetching books."})
 }
-
-   res.json("Hello mate!");
+   //res.json("Hello mate!");
 });
 
 app.get("*", (req, res) => {
