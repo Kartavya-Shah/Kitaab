@@ -1,16 +1,17 @@
  import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
+import Home from "./routes/Home/home";
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
        <Router>
         Header
         <Routes>
-          <Route>
-
-          </Route>
+          <Route
+          path="/" element={<Home/>}/>
+         
         </Routes>
         Footer
        </Router>
