@@ -14,7 +14,37 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/api/books", async (req, res) => {
+try{
+   const data = await Book.find({});
+   res.json(data);
+}
+catch(error){
+   
+}
+
    res.json("Hello mate!");
 });
 
