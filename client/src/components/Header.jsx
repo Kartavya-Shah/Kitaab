@@ -1,11 +1,18 @@
 import React from 'react'
-import {Link,NavLiunk} from "react-router-dom";
-import logo from "./assets/react.svg";
+import {Link,NavLink,NavLiunk} from "react-router-dom";
+import logo from "../assets/react.svg";
 
 const Header = () => {
   return (
 <header>
-    <Link 
+    <Link to="/" className="logo">
+        <img src={logo} alt="ReactJs"/> ReactJs
+    </Link>
+    <nav>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/books">Books</NavLink>
+        <NavLink to="/about">About</NavLink>
+    </nav>
 </header>
   )
 }
