@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from react - router - dom
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-function book() {
-
-    const baseUrl = "http://localhost:8000/api/books"
+function Book() {
+    const baseUrl = "http://localhost:8000/api/books";
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -19,30 +18,30 @@ function book() {
             catch (error) {
                 console.log(error);
             }
-        };
-      fetchData();
-    },[]);
+        }
+        fetchData();
+    }, []);
 
 
 
 
 
 
-    return (
+ return (
         <div>
             <h1>Books</h1>
             <h2>Fetch Example</h2>
-          { /* <pre>{JSON.stringify(data,null,2)}</pre> */ }
-          <ul className="books">
-             {data.map((item)=>(
-                <li key ={item._id}>
-                    <Link to={`/books/${item.slug}`}>
-                        <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt ={item.title}/>
-                        <h3>{item.title}</h3>
-                    </Link>
-                </li>
-             ))}
-          </ul>
+            { /* <pre>{JSON.stringify(data,null,2)}</pre> */}
+            <ul className="books">
+                {data.map((item) => (
+                    <li key={item._id}>
+                        <Link to={`/books/${item.slug}`}>
+                            <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt={item.title} />
+                            <h3>{item.title}</h3>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }
