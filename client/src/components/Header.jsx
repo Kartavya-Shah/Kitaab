@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link,NavLink,NavLiunk} from "react-router-dom";
+import {Link,NavLink} from "react-router-dom";
 import logo from "../assets/react.svg";
 
 const Header = () => {
