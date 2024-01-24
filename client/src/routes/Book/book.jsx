@@ -46,4 +46,4 @@ function Book() {
     )
 }
 
-export default book;
+export default Book;
