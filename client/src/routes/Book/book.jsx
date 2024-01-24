@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function Book() {
     const baseUrl = "http://localhost:8000/api/books";
     const [data, setData] = useState([]);
+    const[isLoading,setIsLoading]=useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,11 +15,13 @@ function Book() {
                 }
                 const jsonData = await response.json();
                 setData(jsonData);
+                setIsLoading(false);
             }
             catch (error) {
                 console.log(error);
+                setIsLoading(false);
             }
-        }
+        };
         fetchData();
     }, []);
 
@@ -32,6 +35,11 @@ function Book() {
             <h1>Books</h1>
             <h2>Fetch Example</h2>
             { /* <pre>{JSON.stringify(data,null,2)}</pre> */}
+
+{isLoading?(
+    <p>Loading...</p>
+):(
+
             <ul className="books">
                 {data.map((item) => (
                     <li key={item._id}>
@@ -42,6 +50,7 @@ function Book() {
                     </li>
                 ))}
             </ul>
+            )}
         </div>
     )
 }
