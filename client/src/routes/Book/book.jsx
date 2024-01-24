@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 function Book() {
     const baseUrl = "http://localhost:8000/api/books";
     const [data, setData] = useState([]);
-    const[isLoading,setIsLoading]=useState(true);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,6 +21,7 @@ function Book() {
             }
             catch (error) {
                 console.log(error);
+                setError("Error fetching data.Please try again later.")
                 setIsLoading(false);
             }
         };
@@ -30,26 +33,28 @@ function Book() {
 
 
 
- return (
+    return (
         <div>
             <h1>Books</h1>
             <h2>Fetch Example</h2>
             { /* <pre>{JSON.stringify(data,null,2)}</pre> */}
 
-{isLoading?(
-    <p>Loading...</p>
-):(
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : error ? (
+                <p>{error}</p>
+            ) : (
 
-            <ul className="books">
-                {data.map((item) => (
-                    <li key={item._id}>
-                        <Link to={`/books/${item.slug}`}>
-                            <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt={item.title} />
-                            <h3>{item.title}</h3>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+                <ul className="books">
+                    {data.map((item) => (
+                        <li key={item._id}>
+                            <Link to={`/books/${item.slug}`}>
+                                <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt={item.title} />
+                                <h3>{item.title}</h3>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
             )}
         </div>
     )
