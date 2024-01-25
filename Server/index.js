@@ -17,9 +17,13 @@ app.use("/uploads",express.static("uploads"));
 app.get("/api/books",async(req,res)=>{
    try{
   const category=req.query.category;
-  console(category);
 
-      const data=await Book.find({});
+  const filter={};
+  if(category){
+   filter.category=category;
+  }
+
+      const data=await Book.find(filter);
       res.json(data);
    }
    catch(error){
@@ -28,7 +32,18 @@ app.get("/api/books",async(req,res)=>{
 });
 
 
+app.get("/api/books/:slug",async(req,res)=>{
+   try{
+      const slugParam=req.params.slug;
+    //  console.log(slugParam);
 
+      const data=await Book.findOne({slug:slugParam});
+      res.json(data);
+   }
+   catch(error){
+      res.status(500).json({error:"An error occurred while fetching books."});
+   }
+});
 
 
 
