@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 
 
 function singleBook() {
-    const baseUrl = "http://localhost:8000/api/books";
+   
     const [data, setData] = useState([]);
+    const urlSlug= useParams(); 
+    const baseUrl = `http://localhost:8000/api/books/${urlSlug.slug}`;
 
     useEffect(() => {
         const fetchData = async () => {
 
             try {
-                const response = await fetch(`${baseUrl}${urlSlug.slug}`);
+                const response = await fetch(baseUrl);
                 if (!response.ok) {
                     throw new Error("Failed to fetch data.")
                 }
@@ -31,7 +33,9 @@ function singleBook() {
 
 
   return (
-    <div>singleBook</div>
+    <div>
+        <pre>{JSON.stringify(data,null,2)}</pre>
+    </div>
   )
 }
 

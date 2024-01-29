@@ -11,47 +11,48 @@ function Book() {
 
     useEffect(() => {
         const fetchData = async () => {
-
             try {
+
                 let url = baseUrl;
                 if (selectedCategory) {
                     url += `?category=${selectedCategory}`
                 }
 
+                const response = await fetch(url);
 
-                const response = await fetch(baseUrl);
                 if (!response.ok) {
-                    throw new Error("Failed to fetch data.")
+                    throw new Error("Failed to fetch data.");
                 }
+
                 const jsonData = await response.json();
                 setData(jsonData);
                 setIsLoading(false);
-            }
-            catch (error) {
+            } catch (error) {
                 console.log(error);
-                setError("Error fetching data.Please try again later.")
+                setError("Error fetching data. Please try again later.");
                 setIsLoading(false);
             }
         };
         fetchData();
     }, [selectedCategory]);
 
-
-
-
-
-
     return (
         <div>
             <h1>Books</h1>
+            <p>
+                This is where we use NodeJs, Express & MongoDB to grab some data. The
+                data below is pulled from a MongoDB database.
+            </p>
+
+            <Link to="/createbook">+ Add New Book</Link>
+
             <h2>Fetch Example</h2>
-            { /* <pre>{JSON.stringify(data,null,2)}</pre> */}
+            {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+
 
             <div className="filters">
                 <label>Categories</label>
-
                 <select onChange={(e) => setSelectedCategory(e.target.value)}>
-
                     <option value="">All</option>
                     <option value="romance">Romance</option>
                     <option value="science">Science</option>
@@ -61,21 +62,24 @@ function Book() {
                     <option value="thriller">Thriller</option>
                     <option value="fiction">Fiction</option>
                     <option value="other">other</option>
-
                 </select>
             </div>
+
+
 
             {isLoading ? (
                 <p>Loading...</p>
             ) : error ? (
                 <p>{error}</p>
             ) : (
-
                 <ul className="books">
                     {data.map((item) => (
                         <li key={item._id}>
                             <Link to={`/books/${item.slug}`}>
-                                <img src={`http://localhost:8000/uploads/${item.thumbnail}`} alt={item.title} />
+                                <img
+                                    src={`http://localhost:8000/uploads/${item.thumbnail}`}
+                                    alt={item.title}
+                                />
                                 <h3>{item.title}</h3>
                             </Link>
                         </li>
@@ -83,7 +87,7 @@ function Book() {
                 </ul>
             )}
         </div>
-    )
+    );
 }
 
 export default Book;
