@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useParams} from "react-router-dom";
 
 
 function singleBook() {
@@ -29,12 +29,21 @@ function singleBook() {
 
 
 
-
+function StarRating
 
 
   return (
     <div>
-        <pre>{JSON.stringify(data,null,2)}</pre>
+
+<Link to ={"/books"}> Books </Link>
+ <div className="bookdetails">
+    <div className="col-1">
+        <img src={`http://localhost:8000/uploads/${data.thumbnail}`}
+         alt={data.title} />
+    </div>
+
+
+ </div>
     </div>
   )
 }
