@@ -45,6 +45,16 @@ app.get("/api/books/:slug",async(req,res)=>{
    }
 });
 
+app.post("/api/books",async(req,res)=>{
+   try{
+    console.log(req.body);
+    res.json("Data Submitted");
+   }
+   catch(error){
+      res.status(500).json({error:"An error occurred while fetching books."});
+   }
+});
+
 
 
 
