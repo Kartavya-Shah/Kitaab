@@ -44,10 +44,21 @@ app.get("/api/books/:slug",async(req,res)=>{
       res.status(500).json({error:"An error occurred while fetching books."});
    }
 });
-
+ 
 app.post("/api/books",async(req,res)=>{
    try{
     console.log(req.body);
+    console.log(req.file);
+
+      const newBook = new Book({
+      title: req.body.title,
+      slug: req.body.stars,
+      description: req.body.description,
+      category: req.body.category,
+      thumbnail: req.body.thumbnail,
+    })
+
+    await Book.create(newBook);
     res.json("Data Submitted");
    }
    catch(error){
