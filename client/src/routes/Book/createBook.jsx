@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import NoImageSelected from '../../assets/no-image-selected.jpg'
+import React, { useState } from "react";
+import NoImageSelected from "../../assets/no-image-selected.jpg";
 
-function createBook  {
+
+function createBook()  {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [stars, setStars] = useState(0);
