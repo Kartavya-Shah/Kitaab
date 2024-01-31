@@ -31,6 +31,7 @@ import Book from "./routes/Book/book";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SingleBook from "./routes/Book/singleBook";
+import createBook from "./routes/Book/createBook";
 
 function App() {
   return (
@@ -42,8 +43,9 @@ function App() {
           <Route path="/about" element={ <About/> } />
           <Route path="/books" element={ <Book/> } />
           <Route path="/books/:slug" element={<SingleBook/>} />
+          <Route path="/createbook" element={<CreateBook/>} />
         </Routes>
-        <Footer/>
+        <Footer/>  
       </Router>
     </>
   )
