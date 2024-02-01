@@ -113,3 +113,93 @@ const handleCategoryChange = (e) => {
     }
   };
 
+  return (
+    <div>
+      <h1>Edit Book</h1>
+      <p>
+        This is where we use NodeJs, Express & MongoDB to grab some data. The
+        data below is pulled from a MongoDB database.
+      </p>
+
+      <button onClick={removeBook} className="delete">
+        Delete Book
+      </button>
+
+      {submitted ? (
+        <p>Data subitted successfully!</p>
+      ) : (
+        <form className="bookdetails" onSubmit={createBook}>
+          <div className="col-1">
+            <label>Upload Thumbnail</label>
+
+            {image ? (
+              <img src={`${image}`} alt="preview image" />
+            ) : (
+              <img
+                src={`http://localhost:8000/uploads/${thumbnail}`}
+                alt="preview image"
+              />
+            )}
+            <input
+              onChange={onImageChange}
+              type="file"
+              accept="image/gif, image/jpeg, image/png"
+            />
+          </div>
+          <div className="col-2">
+            <div>
+              <label>Title</label>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label>Slug</label>
+              <input
+                type="text"
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label>Stars</label>
+              <input
+                type="text"
+                value={stars}
+                onChange={(e) => setStars(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label>Description</label>
+              <textarea
+                rows="4"
+                cols="50"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label>Categories (comma-seperated)</label>
+              <input
+                type="text"
+                value={categories}
+                onChange={handleCategoryChange}
+              />
+            </div>
+
+            <input type="submit" />
+          </div>
+        </form>
+      )}
+    </div>
+  );
+}
+
+export default editBook;
+
