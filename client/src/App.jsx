@@ -43,7 +43,7 @@ function App() {
           <Route path="/about" element={ <About/> } />
           <Route path="/books" element={ <Book/> } />
           <Route path="/books/:slug" element={<SingleBook/>} />
-          <Route path="/createbook" element={<CreateBook/>} />
+          <Route path="/createbook" element={<createBook/>} />
         </Routes>
         <Footer/>  
       </Router>
