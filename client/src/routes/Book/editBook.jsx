@@ -93,13 +93,23 @@ const handleCategoryChange = (e) => {
     }
   };
 
+  const removeBook = async (e) => {
+    e.preventDefault();
 
-  return (
-    <div>
-   
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/books/" + bookId,
+        {
+          method: "DELETE",
+        }
+      );
 
-    </div>
-  )
-}
+      if (response.ok) {
+        navigate("/books");
+        console.log("Book removed.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-export default editBook;
